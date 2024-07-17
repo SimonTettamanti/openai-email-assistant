@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenAI Email Assistant</title>
+</head>
+<body>
+    <h1>OpenAI Email Assistant</h1>
+    <textarea id="emailContent" rows="10" cols="50" placeholder="Write your email here..."></textarea>
+    <button onclick="generateEmail()">Generate Email</button>
+    <script>
+        async function generateEmail() {
+            const content = document.getElementById('emailContent').value;
+            const response = await fetch('https://your-backend-server.com/generate-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: content })
+            });
+            const data = await response.json();
+            document.getElementById('emailContent').value = data.text;
+        }
+    </script>
+</body>
+</html>
